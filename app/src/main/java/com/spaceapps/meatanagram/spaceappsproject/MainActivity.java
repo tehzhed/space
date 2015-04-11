@@ -71,4 +71,18 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    protected void openPost(int position)
+    {
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", position);
+        PostFragment frag = new PostFragment();
+        frag.setArguments(bundle);
+        this.getSupportFragmentManager().beginTransaction().replace(R.id.frag_holder, frag).commit();
+    }
+
+    protected void showTiles()
+    {
+        this.getSupportFragmentManager().beginTransaction().replace(R.id.frag_holder, new MainFragment()).commit();
+    }
 }
