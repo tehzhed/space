@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Users\Simone\Desktop\SpaceApps\facebook\src\main\assets"/></dataSet><dataSet config="debug"><source path="C:\Users\Simone\Desktop\SpaceApps\facebook\src\debug\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/snowblack/Desktop/Space/facebook/src/main/assets"/></dataSet><dataSet config="debug"><source path="/Users/snowblack/Desktop/Space/facebook/src/debug/assets"/></dataSet></merger>
