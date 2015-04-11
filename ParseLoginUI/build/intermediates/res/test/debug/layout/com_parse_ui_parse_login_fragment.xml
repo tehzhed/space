@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00884a">
+
+    <!-- added screenorientation to avoid rotation in login-->
+
+    <include
+        layout="@layout/com_parse_ui_parse_login_app_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.65"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView"
+            android:src="@drawable/title_places"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.35"
+        >
+    </RelativeLayout>
+
+
+    <include layout="@layout/com_parse_ui_parse_login_form" />
+
+        <include layout="@layout/com_parse_ui_parse_login_third_party_section" />
+</LinearLayout>
+<!-- From: file:/C:/Users/Simone/Desktop/Places/ParseLoginUI/res/layout/com_parse_ui_parse_login_fragment.xml --><!-- From: file:/C:/Users/Simone/Desktop/Places/ParseLoginUI/build/intermediates/bundles/debug/res/layout/com_parse_ui_parse_login_fragment.xml -->
