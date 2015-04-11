@@ -1,14 +1,11 @@
 package com.spaceapps.meatanagram.spaceappsproject;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.origamilabs.library.views.StaggeredGridView;
 import com.parse.ParseFacebookUtils;
 import com.parse.ui.ParseLoginActivity;
 import com.parse.ui.ParseLoginBuilder;
@@ -78,7 +75,10 @@ public class MainActivity extends ActionBarActivity {
         bundle.putInt("position", position);
         PostFragment frag = new PostFragment();
         frag.setArguments(bundle);
-        this.getSupportFragmentManager().beginTransaction().replace(R.id.frag_holder, frag).commit();
+        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frag_holder, frag);
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     protected void showTiles()
