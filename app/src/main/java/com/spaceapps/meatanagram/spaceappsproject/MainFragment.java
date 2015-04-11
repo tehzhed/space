@@ -1,23 +1,13 @@
 package com.spaceapps.meatanagram.spaceappsproject;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.origamilabs.library.views.StaggeredGridView;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by Simone on 4/11/2015.
@@ -67,6 +57,12 @@ public class MainFragment extends Fragment {
         sgv = (StaggeredGridView)view.findViewById(R.id.staggeredGridView1);
         sgv.setItemMargin(margin); // set the GridView margin
         sgv.setPadding(margin, 0, margin, 0); // have the margin on the sides as well
+        sgv.setOnItemClickListener(new StaggeredGridView.OnItemClickListener() {
+            @Override
+            public void onItemClick(StaggeredGridView parent, View view, int position, long id) {
+                ((MainActivity)getActivity()).openPost(position);
+            }
+        });
 
         StaggeredAdapter adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, urls);
 
