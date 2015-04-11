@@ -189,15 +189,14 @@ public final class R {
 		public static final int com_facebook_usersettingsfragment_login_button = 0x7f090025;
 		public static final int com_facebook_usersettingsfragment_logo_image = 0x7f090023;
 		public static final int com_facebook_usersettingsfragment_profile_name = 0x7f090024;
-		public static final int create_account = 0x7f090039;
-		public static final int facebook_login = 0x7f090032;
-		public static final int imageView = 0x7f09002e;
+		public static final int create_account = 0x7f090038;
+		public static final int facebook_login = 0x7f090031;
 		public static final int inline = 0x7f090004;
 		public static final int large = 0x7f090009;
 		public static final int left = 0x7f090007;
-		public static final int login_help_email_input = 0x7f090030;
-		public static final int login_help_instructions = 0x7f09002f;
-		public static final int login_help_submit = 0x7f090031;
+		public static final int login_help_email_input = 0x7f09002f;
+		public static final int login_help_instructions = 0x7f09002e;
+		public static final int login_help_submit = 0x7f090030;
 		public static final int login_password_input = 0x7f090029;
 		public static final int login_username_input = 0x7f090028;
 		public static final int normal = 0x7f09000a;
@@ -208,15 +207,15 @@ public final class R {
 		public static final int parse_signup_button = 0x7f09002c;
 		public static final int picker_subtitle = 0x7f09001b;
 		public static final int right = 0x7f090008;
-		public static final int signup_confirm_password_input = 0x7f090036;
-		public static final int signup_email_input = 0x7f090037;
-		public static final int signup_name_input = 0x7f090038;
-		public static final int signup_password_input = 0x7f090035;
-		public static final int signup_username_input = 0x7f090034;
+		public static final int signup_confirm_password_input = 0x7f090035;
+		public static final int signup_email_input = 0x7f090036;
+		public static final int signup_name_input = 0x7f090037;
+		public static final int signup_password_input = 0x7f090034;
+		public static final int signup_username_input = 0x7f090033;
 		public static final int small = 0x7f09000b;
 		public static final int standard = 0x7f090002;
 		public static final int top = 0x7f090005;
-		public static final int twitter_login = 0x7f090033;
+		public static final int twitter_login = 0x7f090032;
 	}
 	public static final class layout {
 		public static final int com_facebook_friendpickerfragment = 0x7f030000;

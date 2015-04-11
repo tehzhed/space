@@ -37,7 +37,7 @@
     <string name="com_parse_ui_create_account_button_label">Create account</string>
     <string name="com_parse_ui_email_input_hint">Email</string>
     <string name="com_parse_ui_email_taken_toast">Email is already taken, please reset your password instead</string>
-    <string name="com_parse_ui_facebook_login_button_label">FB</string>
+    <string name="com_parse_ui_facebook_login_button_label">Log in with Facebook</string>
     <string name="com_parse_ui_facebook_login_failed_toast">Facebook login failed</string>
     <string name="com_parse_ui_forgot_password_button_label"><u>Forgot password</u></string>
     <string name="com_parse_ui_google_login_button_label">Google</string>

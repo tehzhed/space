@@ -10,6 +10,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ParseLoginUI" />
+            <option value="$PROJECT_DIR$/StaggeredGridView" />
+            <option value="$PROJECT_DIR$/StaggeredGridView-master" />
+            <option value="$PROJECT_DIR$/StaggeredGridViewDemo" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/facebook" />
           </set>

@@ -99,6 +99,7 @@
     <orderEntry type="library" exported="" name="android-async-http-1.4.5" level="project" />
     <orderEntry type="library" exported="" name="bolts-android-1.1.3" level="project" />
     <orderEntry type="module" module-name="ParseLoginUI" exported="" />
+    <orderEntry type="module" module-name="StaggeredGridView-master" exported="" />
   </component>
 </module>
 
