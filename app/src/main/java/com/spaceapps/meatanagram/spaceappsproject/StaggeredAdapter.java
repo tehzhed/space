@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class StaggeredAdapter extends ArrayAdapter<String> {
 
@@ -32,6 +33,15 @@ public class StaggeredAdapter extends ArrayAdapter<String> {
         }
 
         holder = (ViewHolder) convertView.getTag();
+
+        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Toast.makeText(getContext(), "Ciao!", Toast.LENGTH_SHORT).show();
+                v.setSelected(true);
+                return true;
+            }
+        });
 
         mLoader.DisplayImage(getItem(position), holder.imageView);
 
