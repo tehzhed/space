@@ -1,9 +1,14 @@
 package com.spaceapps.meatanagram.spaceappsproject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.parse.ParseFacebookUtils;
+import com.parse.ui.ParseLoginActivity;
+import com.parse.ui.ParseLoginBuilder;
 
 public class MainActivity extends Activity {
 
@@ -11,6 +16,20 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(ParseFacebookUtils.getSession() == null)
+        {
+            ParseLoginBuilder builder = new ParseLoginBuilder(this);
+
+            // builder.setAppLogo(R.drawable.app_logo);
+            builder.setFacebookLoginEnabled(true);
+            builder.setParseLoginEnabled(false);
+
+            Intent loginIntent = builder.build();
+            loginIntent.setClass(this, ParseLoginActivity.class);
+
+            startActivityForResult(loginIntent, R.integer.login_request_code);
+        }
     }
 
 

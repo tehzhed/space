@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">SpaceAppsProject</string>
+    <string name="app_id">429542970548966</string>
+    <string name="parse_com_app_key">V5wGCO6dNlmsfzjWYcW1ziWHVVEVCQsrmSWJWsBX</string>
+    <string name="parse_com_client_key">7gMPxLzXkuzEaDwbv9tGPs7tOMY5hanSMXyfQqLi</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
