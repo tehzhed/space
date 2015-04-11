@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ParseLoginUI/ParseLoginUI.iml" filepath="$PROJECT_DIR$/ParseLoginUI/ParseLoginUI.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpaceApps.iml" filepath="$PROJECT_DIR$/SpaceApps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Space.iml" filepath="$PROJECT_DIR$/Space.iml" />
       <module fileurl="file://$PROJECT_DIR$/StaggeredGridView/StaggeredGridView.iml" filepath="$PROJECT_DIR$/StaggeredGridView/StaggeredGridView.iml" />
       <module fileurl="file://$PROJECT_DIR$/StaggeredGridView-master/StaggeredGridView-master.iml" filepath="$PROJECT_DIR$/StaggeredGridView-master/StaggeredGridView-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/StaggeredGridViewDemo/StaggeredGridViewDemo.iml" filepath="$PROJECT_DIR$/StaggeredGridViewDemo/StaggeredGridViewDemo.iml" />
