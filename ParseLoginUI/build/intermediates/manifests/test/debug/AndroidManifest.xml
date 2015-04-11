@@ -3,7 +3,7 @@
     package="com.parse.ui.test" >
 
     <uses-sdk
-        android:minSdkVersion="15"
+        android:minSdkVersion="17"
         android:targetSdkVersion="19" />
 
     <instrumentation
