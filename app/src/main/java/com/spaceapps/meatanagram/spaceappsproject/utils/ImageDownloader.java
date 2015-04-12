@@ -1,26 +1,17 @@
 package com.spaceapps.meatanagram.spaceappsproject.utils;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.util.Log;
 
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Created by Federica on 11/04/15.
  */
 public class ImageDownloader {
+
+    private static final String TAG = "ImageDownloader";
 
     public static int [] getTiles(final double lat, final double lon, final int zoom) {
         int xtile = (int)Math.floor( (lon + 180) / 360 * (1<<zoom) ) ;
@@ -39,15 +30,21 @@ public class ImageDownloader {
         return tiles;
     }
 
-    public static String saveImageDefault(double lat, double lon) throws IOException {
+    public static String saveImageDefaultInDate(double lat, double lon, Date date) throws IOException {
 
-        return saveImage(lat, lon, 7);
+        return saveImage(lat, lon, 7, date);
     }
 
-    public static String saveImage(double lat, double lon, int zoom) throws IOException {
+    public static String saveImageDefaultToday(double lat, double lon) throws IOException {
+
+        Date date = new Date();
+
+        return saveImage(lat, lon, 7, date);
+    }
+
+    public static String saveImage(double lat, double lon, int zoom, Date date) throws IOException {
         int [] tiles = getTiles(lat, lon, zoom);
         int d, m ,y;
-        Date date = new Date();
         String dateString = new SimpleDateFormat("yyyy-MM-dd").format(date);
 //        String day, month, year;
 //        d = Calendar.DAY_OF_MONTH;
@@ -62,6 +59,7 @@ public class ImageDownloader {
 //        year = String.valueOf(y);
 
         String imageUrl = "http://map1.vis.earthdata.nasa.gov/wmts-geo/MODIS_Terra_CorrectedReflectance_TrueColor/default/"+dateString+"/EPSG4326_250m/"+String.valueOf(zoom)+"/"+ String.valueOf(tiles[0])+"/"+String.valueOf(tiles[1])+".jpg";
+        Log.d(TAG, imageUrl);
 //        imageUrl = "http://map1.vis.earthdata.nasa.gov/wmts-geo/MODIS_Terra_CorrectedReflectance_TrueColor/default/2014-02-05/EPSG4326_250m/6/39/24.jpg";
         return imageUrl;
 //        String destinationFile = "image.jpg";

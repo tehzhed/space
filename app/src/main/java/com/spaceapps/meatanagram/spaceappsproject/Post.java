@@ -8,6 +8,8 @@ import com.parse.ParseUser;
 import java.io.Serializable;
 import java.util.Date;
 
+import java.util.Date;
+
 /**
  * Created by Simone on 4/12/2015.
  */
@@ -26,6 +28,7 @@ public class Post extends ParseObject implements Serializable {
     public static final String CATEGORY_KEY = "category";
     public static final String TEXT_KEY = "text";
     public static final String LOCATION_KEY = "location";
+    public static final String DATE_KEY = "date";
     public static final String IN_PLACE_KEY = "inPlace";
     public static final String THUMBNAIL_KEY = "thumbnail";
     public static final String WOW_COUNT_KEY = "wowCount";
@@ -84,10 +87,6 @@ public class Post extends ParseObject implements Serializable {
 
     public void setLocation(ParseGeoPoint location) {
         this.put(LOCATION_KEY, location);
-    }
-
-    public Date getDate() {
-        return this.getCreatedAt();
     }
 
     public ParseFile getPic() {
@@ -209,8 +208,10 @@ public class Post extends ParseObject implements Serializable {
         this.put(LOCATION_KEY, geoPoint);
     }
 
-    public ParseGeoPoint getGeoPoint() {
-        return (ParseGeoPoint) this.get(LOCATION_KEY);
+    public ParseGeoPoint getGeoPoint() { return (ParseGeoPoint) this.get(LOCATION_KEY); }
+
+    public void setDate(Date date) {
+        this.put(DATE_KEY, date);
     }
 
     public ParseUser getAuthor() {
@@ -220,5 +221,7 @@ public class Post extends ParseObject implements Serializable {
     public void setAuthor(ParseUser author) {
         this.put(AUTHOR_KEY, author);
     }
+
+    public Date getDate() { return (Date) this.get(DATE_KEY); }
 }
 
