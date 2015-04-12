@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.location.Location;
 import android.net.Uri;
+import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -80,16 +81,20 @@ public class NewPostFragment extends Fragment implements View.OnClickListener, V
 
     private TextView textView;
     private MenuItem confirmButton;
+    private MenuItem addButton;
 
     private File imageFile;
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        addButton = menu.findItem(R.id.action_new_post);
         inflater.inflate(R.menu.menu_share, menu);
-
         confirmButton = menu.findItem(R.id.action_confirm_post);
+
+        addButton.setVisible(false);
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -97,6 +102,22 @@ public class NewPostFragment extends Fragment implements View.OnClickListener, V
         if (item.getItemId() == R.id.action_confirm_post) share();
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+
+        addButton.setVisible(true);
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+
+        if(addButton != null) addButton.setVisible(true);
     }
 
     @Override
@@ -120,6 +141,8 @@ public class NewPostFragment extends Fragment implements View.OnClickListener, V
                 }
             }
         });
+
+
 
         this.picButton = (ImageButton) view.findViewById(R.id.pic_button);
         this.vidButton = (ImageButton) view.findViewById(R.id.vid_button);
@@ -149,6 +172,14 @@ public class NewPostFragment extends Fragment implements View.OnClickListener, V
         this.textView.setGravity(Gravity.CENTER);
 
         return view;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
     }
 
     private void handleShareImage(Intent intent) {

@@ -5,6 +5,6 @@
     <item
         android:id="@+id/action_confirm_post"
         android:icon="@mipmap/tick"
-        android:title="Place flag"
+        android:title="Post"
         app:showAsAction="ifRoom" />
 </menu>

@@ -54,7 +54,8 @@ public class LocationService extends Service implements
                 .addOnConnectionFailedListener(this)
                 .build();
 
-        if (googleApiClient != null) {
+        if (googleApiClient != null)
+        {
             googleApiClient.connect();
         }
     }
