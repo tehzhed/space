@@ -15,7 +15,7 @@ import java.io.InputStream;
 /**
  * Created by snowblack on 4/12/15.
  */
-public class MapNetworkTask extends AsyncTask<Integer, Void, Bitmap> {
+public class MapNetworkTask extends AsyncTask<Double, Void, Bitmap> {
 
     //courtesy of stackoverflow.com
     public static Bitmap getGoogleMapThumbnail(double lati, double longi){
@@ -44,7 +44,7 @@ public class MapNetworkTask extends AsyncTask<Integer, Void, Bitmap> {
     }
 
     @Override
-    protected Bitmap doInBackground(Integer... params) {
+    protected Bitmap doInBackground(Double... params) {
         String URL = "http://maps.google.com/maps/api/staticmap?center=" +params[0] + "," + params[1] + "&zoom=1&size=200x200&sensor=false&markers="+params[0]+","+params[1];
         Bitmap bmp = null;
         HttpClient httpclient = new DefaultHttpClient();

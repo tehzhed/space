@@ -2,6 +2,7 @@ package com.spaceapps.meatanagram.spaceappsproject;
 
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,25 +17,39 @@ import com.spaceapps.meatanagram.spaceappsproject.utils.ImageDownloader;
 import com.spaceapps.meatanagram.spaceappsproject.utils.MapNetworkTask;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
-public class StaggeredAdapter extends ArrayAdapter<String> {
+public class StaggeredAdapter extends ArrayAdapter<Post> {
 
     private ImageLoader mLoader;
-    protected GoogleMap gMap;
 
     private enum ImageMode {PIC, MAP};
 
     private ImageMode currentIM = ImageMode.PIC;
 
+    private HashMap<Integer, Bitmap> gMapHash;
+
     public StaggeredAdapter(Context context, int textViewResourceId,
-                            String[] objects) {
+                            Post[] objects) {
         super(context, textViewResourceId, objects);
         mLoader = new ImageLoader(context);
+        gMapHash = new HashMap<>();
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+
+        if(!gMapHash.containsKey(position)){
+            try {
+                gMapHash.put(position, new MapNetworkTask().execute(getItem(position).getGeoPoint().getLatitude(),
+                        getItem(position).getGeoPoint().getLongitude()).get());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
 
         ViewHolder holder;
 
@@ -55,7 +70,15 @@ public class StaggeredAdapter extends ArrayAdapter<String> {
                 switch (currentIM) {
                     case PIC:
                         try {
-                            finalHolder.imageView.setImageBitmap(new MapNetworkTask().execute(150, 400).get());
+                            if(gMapHash.containsKey(position)){
+                                finalHolder.imageView.setImageBitmap(gMapHash.get(position));
+                            }else {
+                                Bitmap gMapPic = new MapNetworkTask().execute(getItem(position).getGeoPoint().getLatitude(),
+                                        getItem(position).getGeoPoint().getLongitude()).get();
+                                finalHolder.imageView.setImageBitmap(gMapPic);
+                                gMapHash.put(position, gMapPic);
+                            }
+                            currentIM = ImageMode.MAP;
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         } catch (ExecutionException e) {
@@ -63,7 +86,13 @@ public class StaggeredAdapter extends ArrayAdapter<String> {
                         }
                         break;
                     case MAP:
-                        mLoader.DisplayImage(getItem(position), finalHolder.imageView);
+                        try {
+                            mLoader.DisplayImage(ImageDownloader.saveImageDefault(getItem(position).getGeoPoint().getLatitude(),
+                                    getItem(position).getGeoPoint().getLongitude()), finalHolder.imageView);
+                            currentIM = ImageMode.PIC;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         break;
                     default:
                 }
@@ -72,7 +101,12 @@ public class StaggeredAdapter extends ArrayAdapter<String> {
             }
         });
 
-        mLoader.DisplayImage(getItem(position), holder.imageView);
+        try {
+            mLoader.DisplayImage(ImageDownloader.saveImageDefault(getItem(position).getGeoPoint().getLatitude(),
+                    getItem(position).getGeoPoint().getLongitude()), finalHolder.imageView);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return convertView;
     }

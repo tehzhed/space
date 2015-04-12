@@ -40,6 +40,7 @@ public class ImageDownloader {
     }
 
     public static String saveImageDefault(double lat, double lon) throws IOException {
+
         return saveImage(lat, lon, 7);
     }
 

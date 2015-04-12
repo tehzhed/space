@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.origamilabs.library.views.StaggeredGridView;
+import com.parse.ParseGeoPoint;
 import com.spaceapps.meatanagram.spaceappsproject.utils.ImageDownloader;
 
 import java.io.IOException;
@@ -68,18 +69,15 @@ public class MainFragment extends Fragment {
             }
         });
 
+        //TODO remove this mock-up
+        Post newPost = new Post();
+        newPost.setGeoPoint(new ParseGeoPoint(21, -74));
+
 //        StaggeredAdapter adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, urls);
-        StaggeredAdapter adapter = null;
-        try {
-            adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, new String[]{ImageDownloader.saveImageDefault(21, -74.0)});
+        StaggeredAdapter adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, new Post[]{newPost});
 
         sgv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(getActivity(), "Something went wrong while fetching post data", Toast.LENGTH_SHORT).show();
-        }
 
         return view;
     }
