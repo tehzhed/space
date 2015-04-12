@@ -1,5 +1,6 @@
 package com.spaceapps.meatanagram.spaceappsproject;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,9 +10,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.spaceapps.meatanagram.spaceappsproject.utils.ImageDownloader;
+import com.spaceapps.meatanagram.spaceappsproject.utils.MapNetworkTask;
+
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+
 public class StaggeredAdapter extends ArrayAdapter<String> {
 
     private ImageLoader mLoader;
+    protected GoogleMap gMap;
+
+    private enum ImageMode {PIC, MAP};
+
+    private ImageMode currentIM = ImageMode.PIC;
 
     public StaggeredAdapter(Context context, int textViewResourceId,
                             String[] objects) {
@@ -20,7 +34,7 @@ public class StaggeredAdapter extends ArrayAdapter<String> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder holder;
 
@@ -34,11 +48,26 @@ public class StaggeredAdapter extends ArrayAdapter<String> {
 
         holder = (ViewHolder) convertView.getTag();
 
+        final ViewHolder finalHolder = holder;
         convertView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(getContext(), "Ciao!", Toast.LENGTH_SHORT).show();
-                v.setSelected(true);
+                switch (currentIM) {
+                    case PIC:
+                        try {
+                            finalHolder.imageView.setImageBitmap(new MapNetworkTask().execute(150, 400).get());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case MAP:
+                        mLoader.DisplayImage(getItem(position), finalHolder.imageView);
+                        break;
+                    default:
+                }
+
                 return true;
             }
         });
