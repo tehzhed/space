@@ -4,6 +4,6 @@
     <string name="parse_com_app_key">V5wGCO6dNlmsfzjWYcW1ziWHVVEVCQsrmSWJWsBX</string>
     <string name="parse_com_client_key">7gMPxLzXkuzEaDwbv9tGPs7tOMY5hanSMXyfQqLi</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="hint_post_text">Insert text</string>
     <string name="action_settings">Settings</string>
 </resources>

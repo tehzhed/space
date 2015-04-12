@@ -32,17 +32,6 @@ public class MainActivity extends ActionBarActivity {
             startActivityForResult(loginIntent, R.integer.login_request_code);
         }
 
-        /*
-        sgv = (StaggeredGridView)findViewById(R.id.staggeredGridView1);
-        sgv.setItemMargin(margin); // set the GridView margin
-        sgv.setPadding(margin, 0, margin, 0); // have the margin on the sides as well
-
-        StaggeredAdapter adapter = new StaggeredAdapter(MainActivity.this, R.id.imageView1, urls);
-
-        sgv.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        */
-
         this.getSupportFragmentManager().beginTransaction().replace(R.id.frag_holder, new MainFragment()).commit();
     }
 
@@ -62,8 +51,9 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_new_post)
+        {
+            addNewPost();
         }
 
         return super.onOptionsItemSelected(item);
@@ -84,5 +74,14 @@ public class MainActivity extends ActionBarActivity {
     protected void showTiles()
     {
         this.getSupportFragmentManager().beginTransaction().replace(R.id.frag_holder, new MainFragment()).commit();
+    }
+
+    protected void addNewPost()
+    {
+        NewPostFragment frag = new NewPostFragment();
+        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frag_holder, frag);
+        ft.addToBackStack(null);
+        ft.commit();
     }
 }
