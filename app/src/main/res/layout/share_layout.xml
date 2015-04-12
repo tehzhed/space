@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:isScrollContainer="false"
+    android:id="@+id/share_holder"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:alpha="0.8" >
+
+    <EditText
+        android:id="@+id/share_text_field"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical|center_horizontal"
+        android:hint="@string/hint_post_text"
+        android:textColorHint="@color/grey"
+        android:textColor="@color/white"
+        android:inputType="textMultiLine|textNoSuggestions|textCapSentences"
+        android:paddingBottom="20dp"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:id="@+id/share_settings_layout"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="0.1">
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip" />
+
+    <!--0.15-->
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:weightSum="1">
+
+        <ImageButton
+            android:id="@+id/pic_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.33"
+            android:background="@android:color/transparent"
+            android:padding="18dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/camera"/>
+
+        <ImageButton
+            android:id="@+id/vid_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.33"
+            android:background="@android:color/transparent"
+            android:padding="18dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/videocam"/>
+
+        <ImageButton
+            android:id="@+id/phone_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0.33"
+            android:background="@android:color/transparent"
+            android:padding="18dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/attachment"/>
+
+    </LinearLayout>
+
+</LinearLayout>
