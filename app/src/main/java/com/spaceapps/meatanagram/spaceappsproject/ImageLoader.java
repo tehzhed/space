@@ -42,7 +42,7 @@ public class ImageLoader {
 
 //    final int stub_id= android.R.drawable.alert_dark_frame;
 
-    public void DisplayImage(String url, ImageView imageView)
+    public Bitmap DisplayImage(String url, ImageView imageView)
     {
         imageViews.put(imageView, url);
         Bitmap bitmap=memoryCache.get(url);
@@ -53,6 +53,7 @@ public class ImageLoader {
             queuePhoto(url, imageView);
             imageView.setImageDrawable(null);
         }
+        return bitmap;
     }
 
     private void queuePhoto(String url, ImageView imageView)

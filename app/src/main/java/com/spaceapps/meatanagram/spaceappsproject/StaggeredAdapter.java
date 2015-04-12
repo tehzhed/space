@@ -23,12 +23,14 @@ public class StaggeredAdapter extends ArrayAdapter<Post> {
     private ImageMode currentIM = ImageMode.PIC;
 
     private HashMap<Integer, Bitmap> gMapHash;
+    private HashMap<Integer, Bitmap> gPicHash;
 
     public StaggeredAdapter(Context context, int textViewResourceId,
                             Post[] objects) {
         super(context, textViewResourceId, objects);
         mLoader = new ImageLoader(context);
         gMapHash = new HashMap<>();
+        gPicHash = new HashMap<>();
     }
 
     @Override
@@ -81,8 +83,13 @@ public class StaggeredAdapter extends ArrayAdapter<Post> {
                         break;
                     case MAP:
                         try {
-                            mLoader.DisplayImage(ImageDownloader.saveImageDefaultToday(getItem(position).getGeoPoint().getLatitude(),
-                                    getItem(position).getGeoPoint().getLongitude()), finalHolder.imageView);
+                            if(gPicHash.containsKey(position)){
+                                finalHolder.imageView.setImageBitmap(gPicHash.get(position));
+                            }else {
+                                Bitmap img = mLoader.DisplayImage(ImageDownloader.saveImageDefaultToday(getItem(position).getGeoPoint().getLatitude(),
+                                        getItem(position).getGeoPoint().getLongitude()), finalHolder.imageView);
+                                gPicHash.put(position, img);
+                            }
                             currentIM = ImageMode.PIC;
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -96,8 +103,9 @@ public class StaggeredAdapter extends ArrayAdapter<Post> {
         });
 
         try {
-            mLoader.DisplayImage(ImageDownloader.saveImageDefaultInDate(getItem(position).getGeoPoint().getLatitude(),
+            Bitmap img = mLoader.DisplayImage(ImageDownloader.saveImageDefaultInDate(getItem(position).getGeoPoint().getLatitude(),
                     getItem(position).getGeoPoint().getLongitude(), getItem(position).getDate()), finalHolder.imageView);
+            gPicHash.put(position, img);
         } catch (IOException e) {
             e.printStackTrace();
         }

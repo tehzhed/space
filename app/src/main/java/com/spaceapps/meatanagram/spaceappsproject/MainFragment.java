@@ -73,7 +73,7 @@ public class MainFragment extends Fragment {
         });
 
         //TODO remove this mock-up
-        Post[] postArray = new Post[100];
+        Post[] postArray = new Post[10];
         for (int i = 0; i < postArray.length; i++){
             postArray[i] = new Post();
             postArray[i].setGeoPoint(new ParseGeoPoint(Math.random() * 50, Math.random() * 50));
