@@ -1,7 +1,6 @@
 package com.spaceapps.meatanagram.spaceappsproject;
 
 import com.parse.ParseClassName;
-<<<<<<< HEAD
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
