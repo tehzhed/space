@@ -1,18 +1,12 @@
 package com.spaceapps.meatanagram.spaceappsproject;
 
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.spaceapps.meatanagram.spaceappsproject.utils.ImageDownloader;
 import com.spaceapps.meatanagram.spaceappsproject.utils.MapNetworkTask;
 
@@ -87,7 +81,7 @@ public class StaggeredAdapter extends ArrayAdapter<Post> {
                         break;
                     case MAP:
                         try {
-                            mLoader.DisplayImage(ImageDownloader.saveImageDefault(getItem(position).getGeoPoint().getLatitude(),
+                            mLoader.DisplayImage(ImageDownloader.saveImageDefaultToday(getItem(position).getGeoPoint().getLatitude(),
                                     getItem(position).getGeoPoint().getLongitude()), finalHolder.imageView);
                             currentIM = ImageMode.PIC;
                         } catch (IOException e) {
@@ -102,8 +96,8 @@ public class StaggeredAdapter extends ArrayAdapter<Post> {
         });
 
         try {
-            mLoader.DisplayImage(ImageDownloader.saveImageDefault(getItem(position).getGeoPoint().getLatitude(),
-                    getItem(position).getGeoPoint().getLongitude()), finalHolder.imageView);
+            mLoader.DisplayImage(ImageDownloader.saveImageDefaultInDate(getItem(position).getGeoPoint().getLatitude(),
+                    getItem(position).getGeoPoint().getLongitude(), getItem(position).getDate()), finalHolder.imageView);
         } catch (IOException e) {
             e.printStackTrace();
         }

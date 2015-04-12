@@ -13,6 +13,9 @@ import com.parse.ParseGeoPoint;
 import com.spaceapps.meatanagram.spaceappsproject.utils.ImageDownloader;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by Simone on 4/11/2015.
@@ -70,16 +73,30 @@ public class MainFragment extends Fragment {
         });
 
         //TODO remove this mock-up
-        Post newPost = new Post();
-        newPost.setGeoPoint(new ParseGeoPoint(21, -74));
+        Post[] postArray = new Post[100];
+        for (int i = 0; i < postArray.length; i++){
+            postArray[i] = new Post();
+            postArray[i].setGeoPoint(new ParseGeoPoint(Math.random() * 50, Math.random() * 50));
+            postArray[i].setDate(randomDate());
+        }
+//        Post newPost = new Post();
+//        newPost.setGeoPoint(new ParseGeoPoint(21, -74));
 
 //        StaggeredAdapter adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, urls);
-        StaggeredAdapter adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, new Post[]{newPost});
+        StaggeredAdapter adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, postArray);
 
         sgv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
         return view;
+    }
+
+    private Date randomDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, (int)(Math.max(2013, Math.random() * 2014)));
+        calendar.set(Calendar.DAY_OF_YEAR, (int)(Math.max(1, Math.random() * 365)));
+        Date randomDoB = calendar.getTime();
+        return randomDoB;
     }
 
     @Override
