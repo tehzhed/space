@@ -3,27 +3,33 @@ package com.spaceapps.meatanagram.spaceappsproject;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.origamilabs.library.views.StaggeredGridView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
-import com.spaceapps.meatanagram.spaceappsproject.utils.ImageDownloader;
-
-import java.io.IOException;
+import com.parse.ParseQuery;
+import java.util.List;
 
 /**
  * Created by Simone on 4/11/2015.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = "MainFragment";
 
     private View view;
+
     private int margin = 10;
+
     private StaggeredGridView sgv;
+    private SwipeRefreshLayout srl;
+
+    private StaggeredAdapter adapter;
+
     private String urls[] = {
             "http://farm7.staticflickr.com/6101/6853156632_6374976d38_c.jpg",
             "http://farm8.staticflickr.com/7232/6913504132_a0fce67a0e_c.jpg",
@@ -59,6 +65,9 @@ public class MainFragment extends Fragment {
 
         view = inflater.inflate(R.layout.results_layout, container, false);
 
+        srl = (SwipeRefreshLayout)view.findViewById(R.id.srl);
+        srl.setOnRefreshListener(this);
+
         sgv = (StaggeredGridView)view.findViewById(R.id.staggeredGridView1);
         sgv.setItemMargin(margin); // set the GridView margin
         sgv.setPadding(margin, 0, margin, 0); // have the margin on the sides as well
@@ -73,8 +82,7 @@ public class MainFragment extends Fragment {
         Post newPost = new Post();
         newPost.setGeoPoint(new ParseGeoPoint(21, -74));
 
-//        StaggeredAdapter adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, urls);
-        StaggeredAdapter adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, new Post[]{newPost});
+        adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, new Post[]{newPost});
 
         sgv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -86,5 +94,28 @@ public class MainFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onRefresh()
+    {
+        queryParseForResults();
+    }
+
+    void queryParseForResults()
+    {
+        ParseQuery<Post> query = ParseQuery.getQuery("Posts");
+        query.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> posts, ParseException e)
+            {
+                srl.setRefreshing(false);
+
+                adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, (Post[])posts.toArray());
+
+                sgv.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }

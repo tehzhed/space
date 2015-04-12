@@ -1,1 +1,1 @@
-include ':app', ':ParseLoginUI', ':facebook', ':StaggeredGridView', ':StaggeredGridViewDemo', ':StaggeredGridView-master'
+include ':app', ':ParseLoginUI', ':facebook', ':StaggeredGridView', ':StaggeredGridViewDemo', ':StaggeredGridView-master', ':ArcMenu-master'

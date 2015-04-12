@@ -33,10 +33,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -163,6 +167,10 @@ public class NewPostFragment extends Fragment implements View.OnClickListener, V
         this.picButton.setOnLongClickListener(this);
         this.vidButton.setOnLongClickListener(this);
         this.phoneButton.setOnLongClickListener(this);
+
+        this.picButton.setVisibility(View.GONE); // do we
+        this.vidButton.setVisibility(View.GONE); // really need
+        this.phoneButton.setVisibility(View.GONE); // this functionality?
 
         this.phoneButton.setOnClickListener(this);
         this.picButton.setOnClickListener(this);
@@ -409,6 +417,7 @@ public class NewPostFragment extends Fragment implements View.OnClickListener, V
 
         if (!this.canShare(current_location))
         {
+            Log.d(TAG, "No location available.");
             return;
         }
 
@@ -416,7 +425,7 @@ public class NewPostFragment extends Fragment implements View.OnClickListener, V
 
         Post f = new Post();
 
-        f.setFbId(ParseUser.getCurrentUser() + "");
+        f.setAuthor(ParseUser.getCurrentUser());
         f.setLocation(p);
         f.setText(this.textView.getText().toString());
 
@@ -463,9 +472,23 @@ public class NewPostFragment extends Fragment implements View.OnClickListener, V
             return;
         }
 
-        confirmButton.setVisible(false);
+        f.put("PIC_URL", getNASAPicFromLocation());
 
-        this.resetMedia();
+        f.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e)
+            {
+                confirmButton.setVisible(false);
+                Toast.makeText(getActivity(), "Post uploaded!", Toast.LENGTH_LONG).show();
+                resetMedia();
+                ((MainActivity)getActivity()).showTiles();
+            }
+        });
+    }
+
+    private String getNASAPicFromLocation()
+    {
+        return null;
     }
 
     protected void resetMedia()

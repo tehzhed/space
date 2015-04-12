@@ -34,6 +34,8 @@ dependencies {
     compile 'com.loopj.android:android-async-http:1.4.5'
     compile project(':ParseLoginUI')
     compile project(':StaggeredGridView-master')
+    compile project(':ArcMenu-master')
+    compile 'com.nvanbenschoten.motion:library:1.0.2'
     compile 'com.facebook.android:facebook-android-sdk:3.21.1'
     // compile 'com.origamilabs.library:StaggeredGridView:1.0+'
     compile 'com.squareup.picasso:picasso:2.4.0'

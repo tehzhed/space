@@ -12,7 +12,12 @@
         android:background="@android:color/white"
         android:queryHint="#spacequeries"/>
 
-    <com.origamilabs.library.views.StaggeredGridView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/srl" >
+
+        <com.origamilabs.library.views.StaggeredGridView
         android:id="@+id/staggeredGridView1"
         staggered:numColumns="2"
         staggered:drawSelectorOnTop="true"
@@ -20,5 +25,11 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"/>
 
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.capricorn.ArcMenu
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/arc_menu" />
 
 </LinearLayout>

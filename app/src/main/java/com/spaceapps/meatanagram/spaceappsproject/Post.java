@@ -35,6 +35,7 @@ public class Post extends ParseObject implements Serializable {
     public static final String PASSWORD_KEY = "password";
     public static final String ACCOUNT_TYPE_KEY = "accountType";
     public static final String COMMENTS_COUNT_KEY = "num_comments";
+    public static final String AUTHOR_KEY = "author";
 
 
     public void setOwner(ParseUser owner) {
@@ -210,6 +211,14 @@ public class Post extends ParseObject implements Serializable {
 
     public ParseGeoPoint getGeoPoint() {
         return (ParseGeoPoint) this.get(LOCATION_KEY);
+    }
+
+    public ParseUser getAuthor() {
+        return (ParseUser) this.get(AUTHOR_KEY);
+    }
+
+    public void setAuthor(ParseUser author) {
+        this.put(AUTHOR_KEY, author);
     }
 }
 
