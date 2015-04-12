@@ -1,6 +1,7 @@
 package com.spaceapps.meatanagram.spaceappsproject;
 
 import com.parse.ParseClassName;
+<<<<<<< HEAD
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
@@ -202,6 +203,14 @@ public class Post extends ParseObject implements Serializable {
 
     public void decrementBooCount() {
         this.increment(BOO_COUNT_KEY, -1);
+    }
+
+    public void setGeoPoint(ParseGeoPoint geoPoint) {
+        this.put(LOCATION_KEY, geoPoint);
+    }
+
+    public ParseGeoPoint getGeoPoint() {
+        return (ParseGeoPoint) this.get(LOCATION_KEY);
     }
 }
 

@@ -6,8 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.origamilabs.library.views.StaggeredGridView;
+import com.parse.ParseGeoPoint;
+import com.spaceapps.meatanagram.spaceappsproject.utils.ImageDownloader;
+
+import java.io.IOException;
 
 /**
  * Created by Simone on 4/11/2015.
@@ -60,11 +65,16 @@ public class MainFragment extends Fragment {
         sgv.setOnItemClickListener(new StaggeredGridView.OnItemClickListener() {
             @Override
             public void onItemClick(StaggeredGridView parent, View view, int position, long id) {
-                ((MainActivity)getActivity()).openPost(position);
+                ((MainActivity) getActivity()).openPost(position);
             }
         });
 
-        StaggeredAdapter adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, urls);
+        //TODO remove this mock-up
+        Post newPost = new Post();
+        newPost.setGeoPoint(new ParseGeoPoint(21, -74));
+
+//        StaggeredAdapter adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, urls);
+        StaggeredAdapter adapter = new StaggeredAdapter(getActivity(), R.id.imageView1, new Post[]{newPost});
 
         sgv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
